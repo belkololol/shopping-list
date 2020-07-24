@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="shopping" content="shopping list"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Список покупок</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <button class="tab-button new-list"> Список покупок </button>
+        <button class="tab-button always-need active"> Шаблон </button>
+    </div>
+
+    <div class="list">
+        <p class="manual">Составляйте список покупок (+) или используйте шаблон. Чтобы вычеркнуть товар из списка,
+            нажмите &#x2718 .
+        </p>
+        <ul class="">
+            <li class="need-to-buy"> Молоко <span class="ready">&#x2718</span></li>
+            <li class="need-to-buy"> Колбаса <span class="ready">&#x2718</span> </li>
+            <li></li>
+        </ul>
+    </div>
+
+
+
+    <div class="list active template">
+
+        <p class="manual">
+            Добавляйте продукты в шаблон (+), отмечайте, когда что-то закончилось ( ▢ )
+            и оно попадет в "список покупок".
+        </p>
+        <div class="edit">
+            <button class="edit-button">
+                <span class="button-content not-finish-content">
+                    <span>ред:</span>
+                    <img src="image/edit.png">
+                </span>
+
+                <span class="button-content finish-content">
+                    &#10004
+                </span>
+            </button>
+        </div>
+        <ul class="template-list"></ul>
+    </div>
+
+    <div class="add-button-wrapper">
+        <button class="plus"></button>
+        <input class="new-product" placeholder="например, крабовые палочки"></input>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
