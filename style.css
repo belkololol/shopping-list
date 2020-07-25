@@ -4,6 +4,11 @@ body {
   min-height: 100%;
 }
 
+input, button {
+  -moz-appearance: button;
+  -webkit-appearance: button;
+}
+
 /* кнопки в заголовке */
 
 .header {
