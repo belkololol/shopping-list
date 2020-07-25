@@ -125,6 +125,8 @@ li {
   outline: none;
   border-radius: 50%;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  min-width: 40px;
+  min-height: 40px;
   width: 40px;
   height: 40px;
   font-size: 30px;
