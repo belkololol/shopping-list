@@ -34,7 +34,10 @@ function createTemplateProduct(productData) {
     </label>
   `;
 
-  newProduct.querySelector('.remove-button').addEventListener('click', deleteListItem);
+  newProduct.querySelector('.remove-button').addEventListener('click', (e) => {
+    e.preventDefault();
+    deleteListItem(productData);
+  });
 
   return newProduct;
 }
@@ -48,7 +51,7 @@ function createList() {
 }
 
 function addProduct(name) {
-  const id = new Date().getTime().toString;
+  const id = new Date().getTime().toString();
   const newProductData = {
     name: name,
     id: id,
@@ -108,9 +111,15 @@ function toggleEditMode(e) {
   });
 }
 
-function deleteListItem (e) {
-  e.preventDefault();
-  console.log(e);
+function deleteListItem (productToDelete) {
+  const index = listsData.template.findIndex((product) => {
+    if(productToDelete.id === product.id) return true;
+  });
+  
+  listsData.template.splice(index, 1);
+  localStorage.setItem(localStorageName, JSON.stringify(listsData));
+
+  createList();
 }
 
 function init() {
