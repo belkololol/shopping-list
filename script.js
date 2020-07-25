@@ -115,10 +115,10 @@ function setEditModeListItems(isEditMode) {
     const removeButton = li.querySelector('.remove-button');
 
     if (isEditMode) {
-      checkbox.classList.add('disabled');
+      checkbox.setAttribute('disabled', true);
       removeButton.classList.remove('hidden');
     } else {
-      checkbox.classList.remove('disabled');
+      checkbox.removeAttribute('disabled');
       removeButton.classList.add('hidden');
     }
   });
