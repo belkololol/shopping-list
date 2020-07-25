@@ -137,6 +137,7 @@ li {
   transition: transform 0.2s;
   padding: 0;
   color: white;
+  text-align: center;
 }
 
 .plus.close {
