@@ -135,6 +135,7 @@ li {
   height: 40px;
   font-size: 30px;
   transition: transform 0.2s;
+  padding: 0;
 }
 
 .plus::after {
