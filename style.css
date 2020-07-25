@@ -134,12 +134,10 @@ li {
   width: 40px;
   height: 40px;
   font-size: 30px;
+  line-height: 1;
   transition: transform 0.2s;
   padding: 0;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .plus.close {
