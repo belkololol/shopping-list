@@ -143,6 +143,10 @@ li {
   align-items: center;
 }
 
+.plus > span {
+  display: block;
+}
+
 .plus.close {
   transform: rotate(45deg);
 }
