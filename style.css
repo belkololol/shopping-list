@@ -110,6 +110,7 @@ li {
   right: 16px;
   height: 40px;
   width: 40px;
+  transition: width 0.35s ease-in;
 }
 
 .add-button-wrapper.show {
@@ -122,13 +123,10 @@ li {
   right: 0;
   border-style: none;
   outline: none;
+  border-radius: 50%;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
-  max-width: 40px;
-  max-height: 40px;
   width: 40px;
   height: 40px;
-  min-height: 40px;
-  min-width: 40px;
   font-size: 30px;
   transition: transform 0.2s;
 }
