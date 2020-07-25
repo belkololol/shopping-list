@@ -13,6 +13,8 @@ let listsData = {
   template: [],
 };
 
+let isEditMode = false;
+
 const DOMNodes = {
   templateList: document.querySelector('.template ul'),
   plusButton: document.querySelector('.plus'),
@@ -55,13 +57,14 @@ function addProduct(name) {
   const newProductData = {
     name: name,
     id: id,
-    inputId: 'input-' + id, 
+    inputId: 'input-' + id,
   };
 
   listsData.template.push(newProductData);
   localStorage.setItem(localStorageName, JSON.stringify(listsData));
 
   createList();
+  setEditModeListItems(isEditMode);
 }
 
 function plusButtonHandler(e) {
@@ -101,25 +104,36 @@ function plusInputHandler(e) {
 function toggleEditMode(e) {
   const button = e.currentTarget;
   button.classList.toggle('finish');
+  isEditMode = !isEditMode;
 
+  setEditModeListItems(isEditMode);
+}
+
+function setEditModeListItems(isEditMode) {
   DOMNodes.templateList.childNodes.forEach((li) => {
     const checkbox = li.querySelector('.check-add');
     const removeButton = li.querySelector('.remove-button');
 
-    checkbox.classList.toggle('disabled');
-    removeButton.classList.toggle('hidden');
+    if (isEditMode) {
+      checkbox.classList.add('disabled');
+      removeButton.classList.remove('hidden');
+    } else {
+      checkbox.classList.remove('disabled');
+      removeButton.classList.add('hidden');
+    }
   });
 }
 
-function deleteListItem (productToDelete) {
+function deleteListItem(productToDelete) {
   const index = listsData.template.findIndex((product) => {
-    if(productToDelete.id === product.id) return true;
+    if (productToDelete.id === product.id) return true;
   });
-  
+
   listsData.template.splice(index, 1);
   localStorage.setItem(localStorageName, JSON.stringify(listsData));
 
   createList();
+  setEditModeListItems(isEditMode);
 }
 
 function init() {
