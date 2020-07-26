@@ -138,6 +138,11 @@ li {
 
 }
 
+.plus img {
+  width: 40px;
+  height: 40px;
+}
+
 
 .plus.close {
   transform: rotate(45deg);
@@ -198,10 +203,6 @@ li {
   justify-content: space-between;
 }
 
-.edit-button.finish {
-  color: #F3AE0F;
-  font-size: 20px;
-}
 
 .edit-button.finish>.not-finish-content {
   display: none;
@@ -212,7 +213,7 @@ li {
 }
 
 .edit-button img {
-  width: 17px;
+  width: 18px;
   margin-left: 5px;
 }
 
