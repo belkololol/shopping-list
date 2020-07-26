@@ -128,10 +128,7 @@ li {
   bottom: 0;
   right: 0;
   border: 0;
-  border-style: none;
   outline: none;
-  border-radius: 50%;
-  background: linear-gradient(#F3AE0F, #E38916) #E38916;
   width: 40px;
   height: 40px;
   font-size: 30px;
@@ -139,16 +136,8 @@ li {
   padding: 0;
   color: white;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.plus > span {
-  display: block;
-  margin: 0;
-  padding: 0;
-}
 
 .plus.close {
   transform: rotate(45deg);
