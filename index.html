@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="shopping" content="shopping list"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Список покупок</title>
     <link rel="stylesheet" href="style.css">
@@ -13,30 +12,16 @@
 
 <body>
     <div class="header">
-        <button class="tab-button new-list"> Список покупок </button>
-        <button class="tab-button always-need active"> Шаблон </button>
+        <button class="tab-button shopping"> Список покупок </button>
+        <button class="tab-button template"> Шаблон </button>
     </div>
 
-    <div class="list">
-        <p class="manual">Составляйте список покупок (+) или используйте шаблон. Чтобы вычеркнуть товар из списка,
-            нажмите &#x2718 .
-        </p>
-        <ul class="">
-            <li class="need-to-buy"> Молоко <span class="ready">&#x2718</span></li>
-            <li class="need-to-buy"> Колбаса <span class="ready">&#x2718</span> </li>
-            <li></li>
-        </ul>
-    </div>
+            <!-- <li class="need-to-buy"> Молоко <span class="ready">&#x2718</span></li>
+            <li class="need-to-buy"> Колбаса <span class="ready">&#x2718</span> </li> -->
 
-
-
-    <div class="list active template">
-
-        <p class="manual">
-            Добавляйте продукты в шаблон (+), отмечайте, когда что-то закончилось ( ▢ )
-            и оно попадет в "список покупок".
-        </p>
-        <div class="edit">
+    <div class="list-wrapper">
+        <p class="manual"></p>
+        <div class="edit hidden">
             <button class="edit-button">
                 <span class="button-content not-finish-content">
                     <span>ред:</span>
@@ -44,7 +29,6 @@
                 </span>
 
                 <img src="image/finish.png" class="button-content finish-content">
-
             </button>
         </div>
         <ul class="template-list"></ul>

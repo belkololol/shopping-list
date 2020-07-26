@@ -39,25 +39,20 @@ input, button {
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
 }
 
-.always-need {
+.template {
   margin-left: 2px;
 }
 
-.new-list {
+.shopping {
   margin-right: 2px;
 }
 
 /* списки покупок */
 
-.list {
-  display: none;
-  position: relative;
+.list-wrapper {
+  /* position: relative; */
   padding: 8px 20px 8px 20px;
   font-style: italic;
-}
-
-.list.active {
-  display: block;
 }
 
 ul {

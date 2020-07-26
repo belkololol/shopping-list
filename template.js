@@ -8,15 +8,29 @@ const localStorageName = 'listsData';
   }]
 */
 
+const listNames = {
+  template: 'template',
+  shopping: 'shopping',
+};
+
 let listsData = {
   shopping: [],
   template: [],
+  activeList: listNames.template,
+  manual: {
+    [listNames.template]: 'Добавляйте продукты в шаблон (+), отмечайте, когда что-то закончилось ( ▢ ) и оно попадет в "список покупок".',
+    [listNames.shopping]: 'Составляйте список покупок (+) или используйте шаблон. Чтобы вычеркнуть товар из списка, нажмите &#x2718.',
+  },
 };
 
 let isEditMode = false;
 
 const DOMNodes = {
-  templateList: document.querySelector('.template ul'),
+  editWrapper: document.querySelector('.edit'),
+  manual: document.querySelector('.manual'),
+  templateTabButton: document.querySelector('.tab-button.template'),
+  shoppingTabButton: document.querySelector('.tab-button.shopping'),
+  templateList: document.querySelector('.template-list'),
   plusButton: document.querySelector('.plus'),
   plusButtonWrapper: document.querySelector('.add-button-wrapper'),
   plusInput: document.querySelector('.new-product'),
@@ -142,11 +156,56 @@ function init() {
     listsData = JSON.parse(dataFromLocalStorage);
   }
 
+  setActiveList(listsData.activeList);
+  setManual(listsData.activeList);
+  setEdit(listsData.activeList);
   createList();
 
+  DOMNodes.templateTabButton.addEventListener('click', tabTemplateHandler);
+  DOMNodes.shoppingTabButton.addEventListener('click', tabShoppingHandler);
   DOMNodes.plusButton.addEventListener('click', plusButtonHandler);
   DOMNodes.plusInput.addEventListener('input', plusInputHandler);
   DOMNodes.editModeButton.addEventListener('click', toggleEditMode);
 }
 
+function setEdit(activeList) {
+  if (activeList === listNames.template) {
+    DOMNodes.editWrapper.classList.remove('hidden');
+  } else {
+    DOMNodes.editWrapper.classList.add('hidden');
+  }
+}
+
+function setActiveList(activeList) {
+  if (activeList === listNames.template) {
+    DOMNodes.templateTabButton.classList.add('active');
+  } else {
+    DOMNodes.shoppingTabButton.classList.add('active');
+  }
+}
+
+function tabTemplateHandler() {
+  DOMNodes.templateTabButton.classList.add('active');
+  DOMNodes.shoppingTabButton.classList.remove('active');
+  listsData.activeList = listNames.template;
+  localStorage.setItem(localStorageName, JSON.stringify(listsData));
+  setEdit(listNames.template);
+  setManual(listNames.template);
+}
+
+function tabShoppingHandler() {
+  DOMNodes.shoppingTabButton.classList.add('active');
+  DOMNodes.templateTabButton.classList.remove('active');
+  listsData.activeList = listNames.shopping;
+  localStorage.setItem(localStorageName, JSON.stringify(listsData));
+  setEdit(listNames.shopping);
+  setManual(listNames.shopping);
+}
+
+function setManual(activeList) {
+  const text = listsData.manual[activeList];
+  DOMNodes.manual.innerHTML = text;
+}
+
 init();
+
