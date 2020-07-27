@@ -21,6 +21,7 @@ let listsData = {
     [listNames.template]: 'Добавляйте продукты в шаблон (+), отмечайте, когда что-то закончилось ( ▢ ) и оно попадет в "список покупок".',
     [listNames.shopping]: 'Составляйте список покупок (+) или используйте шаблон. Чтобы вычеркнуть товар из списка, нажмите &#x2718.',
   },
+
 };
 
 let isEditMode = false;
@@ -31,6 +32,7 @@ const DOMNodes = {
   templateTabButton: document.querySelector('.tab-button.template'),
   shoppingTabButton: document.querySelector('.tab-button.shopping'),
   templateList: document.querySelector('.template-list'),
+  shoppingList: document.querySelector('.shopping-list'),
   plusButton: document.querySelector('.plus'),
   plusButtonWrapper: document.querySelector('.add-button-wrapper'),
   plusInput: document.querySelector('.new-product'),
@@ -191,6 +193,7 @@ function tabTemplateHandler() {
   localStorage.setItem(localStorageName, JSON.stringify(listsData));
   setEdit(listNames.template);
   setManual(listNames.template);
+  setList(listNames.template);
 }
 
 function tabShoppingHandler() {
@@ -200,11 +203,22 @@ function tabShoppingHandler() {
   localStorage.setItem(localStorageName, JSON.stringify(listsData));
   setEdit(listNames.shopping);
   setManual(listNames.shopping);
+  setList(listNames.shopping);
 }
 
 function setManual(activeList) {
   const text = listsData.manual[activeList];
   DOMNodes.manual.innerHTML = text;
+}
+
+function setList(activeList) {
+  if (activeList === listNames.template) {
+    DOMNodes.templateList.classList.remove('hidden');
+    DOMNodes.shoppingList.classList.add('hidden');
+  } else {
+    DOMNodes.templateList.classList.add('hidden');
+    DOMNodes.shoppingList.classList.remove('hidden');
+  }
 }
 
 init();
