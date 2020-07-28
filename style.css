@@ -101,10 +101,7 @@ li {
 .remove-button {
   width: 20px;
   margin-left: 8px;
-  transform: translateY(0px);
-  opacity: 1;
   transition-duration: 0.05s;
-  -webkit-transform:  translateY(0px);
   -webkit-transition-duration: 0.05s;
 }
 
@@ -113,6 +110,9 @@ li {
   opacity: 0.3;
   -webkit-transform:  translateY(-10px);
 }
+
+
+
 
 /* инпут добавления продукта */
 
