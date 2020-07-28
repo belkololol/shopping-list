@@ -99,17 +99,16 @@ li {
 }
 
 .remove-button {
-  -webkit-transform:scale(1, 1);
-  -webkit-transition: transform 0.05s linear;
   width: 20px;
   margin-left: 8px;
-  transform: scale(1);
+  transform: translateY(0px);
+  opacity: 1;
   transition-duration: 0.05s;
 }
 
 .edit:active+.template-list .remove-button {
-  -webkit-transform:scale(0.7, 0.7);
-  transform: scale(0.7, 0.7);
+  transform: translateY(-10px);
+  opacity: 0.3;
 }
 
 /* инпут добавления продукта */
