@@ -133,6 +133,7 @@ function setEditModeListItems(isEditMode) {
     if (isEditMode) {
       checkbox.setAttribute('disabled', true);
       removeButton.classList.remove('hidden');
+      removeButton.classList.add('animation');
     } else {
       checkbox.removeAttribute('disabled');
       removeButton.classList.add('hidden');
