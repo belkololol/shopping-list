@@ -133,10 +133,15 @@ function setEditModeListItems(isEditMode) {
     if (isEditMode) {
       checkbox.setAttribute('disabled', true);
       removeButton.classList.remove('hidden');
-      removeButton.classList.add('animation');
+      setTimeout(() => {
+        removeButton.classList.add('animate');
+      }, 100)
     } else {
       checkbox.removeAttribute('disabled');
       removeButton.classList.add('hidden');
+      setTimeout(() => {
+        removeButton.classList.remove('animate');
+      }, 100)
     }
   });
 }
