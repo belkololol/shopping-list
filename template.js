@@ -5,6 +5,10 @@ const localStorageName = 'listsData';
     id: 1544234234234,
     inputId: 'input-1544234234234',
     name: 'Молоко',
+  }],
+  shopping: [{
+    id: 1544234234234,
+    name: 'Молоко',
   }]
 */
 
@@ -61,26 +65,42 @@ function createTemplateProduct(productData) {
 }
 
 // создание и добавление разметки всего списка
-function createList() {
+function createTemplateList() {
   DOMNodes.templateList.innerHTML = '';
   const productListData = listsData.template;
   const listLayout = productListData.map((productData) => createTemplateProduct(productData));
   DOMNodes.templateList.append(...listLayout);
+
+  // то же самое, что и const listLayout = productListData.map((productData) => createTemplateProduct(productData));
+  // const listLayout = [];
+  // for (let i = 0; i < productListData.length; i++) {
+  //   const productData = productListData[i];
+  //   listLayout.push(createTemplateProduct(productData));
+  // }
 }
 
 function addProduct(name) {
+  const isTemplateList = listsData.activeList === 'template';
+
   const id = new Date().getTime().toString();
   const newProductData = {
     name: name,
     id: id,
-    inputId: 'input-' + id,
   };
 
-  listsData.template.push(newProductData);
+  if (isTemplateList) {
+    newProductData.inputId = 'input-' + id;
+    setEditModeListItems(isEditMode);
+  }
+
+  listsData[listsData.activeList].push(newProductData);
   localStorage.setItem(localStorageName, JSON.stringify(listsData));
 
-  createList();
-  setEditModeListItems(isEditMode);
+  if (isTemplateList) {
+    createTemplateList();
+  } else {
+    createShoppingList();
+  }
 }
 
 function plusButtonHandler(e) {
@@ -140,7 +160,7 @@ function setEditModeListItems(isEditMode) {
       checkbox.removeAttribute('disabled');
       removeButton.classList.add('hidden');
       setTimeout(() => {
-        removeButton.classList.remove('animate');
+        removeButton.classList.add('animate');
       }, 100)
     }
   });
@@ -154,7 +174,7 @@ function deleteListItem(productToDelete) {
   listsData.template.splice(index, 1);
   localStorage.setItem(localStorageName, JSON.stringify(listsData));
 
-  createList();
+  createTemplateList();
   setEditModeListItems(isEditMode);
 }
 
@@ -167,7 +187,7 @@ function init() {
   setActiveList(listsData.activeList);
   setManual(listsData.activeList);
   setEdit(listsData.activeList);
-  createList();
+  createTemplateList();
 
   DOMNodes.templateTabButton.addEventListener('click', tabTemplateHandler);
   DOMNodes.shoppingTabButton.addEventListener('click', tabShoppingHandler);
