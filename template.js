@@ -58,7 +58,7 @@ function createTemplateProduct(productData) {
 
   newProduct.querySelector('.remove-button').addEventListener('click', (e) => {
     e.preventDefault();
-    deleteListItem(productData);
+    deleteTemplateListItem(productData);
   });
 
   return newProduct;
@@ -80,7 +80,7 @@ function createTemplateList() {
 }
 
 function addProduct(name) {
-  const isTemplateList = listsData.activeList === 'template';
+  const isTemplateList = listsData.activeList === listNames.template;
 
   const id = new Date().getTime().toString();
   const newProductData = {
@@ -166,7 +166,7 @@ function setEditModeListItems(isEditMode) {
   });
 }
 
-function deleteListItem(productToDelete) {
+function deleteTemplateListItem(productToDelete) {
   const index = listsData.template.findIndex((product) => {
     if (productToDelete.id === product.id) return true;
   });
@@ -188,6 +188,7 @@ function init() {
   setManual(listsData.activeList);
   setEdit(listsData.activeList);
   createTemplateList();
+  createShoppingList();
 
   DOMNodes.templateTabButton.addEventListener('click', tabTemplateHandler);
   DOMNodes.shoppingTabButton.addEventListener('click', tabShoppingHandler);
@@ -207,8 +208,12 @@ function setEdit(activeList) {
 function setActiveList(activeList) {
   if (activeList === listNames.template) {
     DOMNodes.templateTabButton.classList.add('active');
+    DOMNodes.templateList.classList.remove('hidden');
+    DOMNodes.shoppingList.classList.add('hidden');
   } else {
     DOMNodes.shoppingTabButton.classList.add('active');
+    DOMNodes.templateList.classList.add('hidden');
+    DOMNodes.shoppingList.classList.remove('hidden');
   }
 }
 
@@ -248,4 +253,3 @@ function setList(activeList) {
 }
 
 init();
-
