@@ -53,6 +53,7 @@ input, button {
   /* position: relative; */
   padding: 8px 20px 8px 20px;
   font-style: italic;
+  z-index: -1;
 }
 
 ul {
@@ -114,6 +115,11 @@ li {
 }
 
 /* инпут добавления продукта */
+.add-button-conteiner {
+background-color: rgb(56, 50, 50);
+width: 100px;
+}
+
 
 .add-button-wrapper {
   position: fixed;
@@ -122,6 +128,7 @@ li {
   height: 40px;
   width: 40px;
   transition: width 0.35s ease-in;
+  z-index: 1;
 }
 
 .add-button-wrapper.show {
@@ -178,6 +185,15 @@ li {
   border-width: 2px;
   padding: 0 8px;
   opacity: 1;
+}
+
+.white-substrate {
+  background-color:rgba(255, 255, 255, 0.8);;
+  z-index: 0;
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 
 .manual {

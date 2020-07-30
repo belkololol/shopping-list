@@ -41,6 +41,7 @@ const DOMNodes = {
   plusButtonWrapper: document.querySelector('.add-button-wrapper'),
   plusInput: document.querySelector('.new-product'),
   editModeButton: document.querySelector('.edit-button'),
+  whiteSubstrate: document.querySelector('.white-substrate'),
 };
 
 // создание разметки элемента списка (DOM узла правильнее)
@@ -112,6 +113,7 @@ function plusButtonHandler(e) {
   if (isClose) {
     DOMNodes.plusButtonWrapper.classList.remove('show');
     button.classList.remove('close');
+    DOMNodes.whiteSubstrate.classList.toggle('hidden')
     // если что введено, то берется значение и добавляется элемент списка
   } else if (isShowWrapper) {
     const value = DOMNodes.plusInput.value;
@@ -120,9 +122,11 @@ function plusButtonHandler(e) {
     DOMNodes.plusInput.value = '';
     DOMNodes.plusButtonWrapper.classList.add('show');
     button.classList.add('close');
+    DOMNodes.whiteSubstrate.classList.toggle('hidden');
   } else {
     DOMNodes.plusButtonWrapper.classList.add('show');
     button.classList.add('close');
+    DOMNodes.whiteSubstrate.classList.toggle('hidden');
   }
 }
 
