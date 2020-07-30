@@ -160,6 +160,7 @@ function setEditModeListItems(isEditMode) {
       DOMNodes.plusButtonWrapper.classList.remove('show');
       DOMNodes.whiteSubstrate.classList.add('hidden')
       removeButton.classList.remove('hidden');
+      DOMNodes.plusButton.classList.remove('close');
       setTimeout(() => {
         removeButton.classList.add('animate');
       }, 100)
