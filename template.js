@@ -113,7 +113,7 @@ function plusButtonHandler(e) {
   if (isClose) {
     DOMNodes.plusButtonWrapper.classList.remove('show');
     button.classList.remove('close');
-    DOMNodes.whiteSubstrate.classList.toggle('hidden')
+    DOMNodes.whiteSubstrate.classList.add('hidden')
     // если что введено, то берется значение и добавляется элемент списка
   } else if (isShowWrapper) {
     const value = DOMNodes.plusInput.value;
@@ -122,11 +122,11 @@ function plusButtonHandler(e) {
     DOMNodes.plusInput.value = '';
     DOMNodes.plusButtonWrapper.classList.add('show');
     button.classList.add('close');
-    DOMNodes.whiteSubstrate.classList.toggle('hidden');
+    DOMNodes.whiteSubstrate.classList.remove('hidden');
   } else {
     DOMNodes.plusButtonWrapper.classList.add('show');
     button.classList.add('close');
-    DOMNodes.whiteSubstrate.classList.toggle('hidden');
+    DOMNodes.whiteSubstrate.classList.remove('hidden');
   }
 }
 
