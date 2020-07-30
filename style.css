@@ -149,6 +149,10 @@ width: 100px;
   color: white;
 }
 
+.plus:disabled {
+  filter: grayscale(100%);
+}
+
 .add-button-wrapper .plus {
   background-color: transparent;
 }
