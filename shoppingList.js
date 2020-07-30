@@ -3,7 +3,7 @@ function createShoppingProduct(productData) {
     newProduct.id = productData.id;
 
     newProduct.innerHTML = `
-      ${productData.name}  <span class="ready">&#x2718</span> 
+      ${productData.name}  <img src="image/deleteshopping.png" class="ready">
     `;
 
     newProduct.querySelector('.ready').addEventListener('click', (e) => {
