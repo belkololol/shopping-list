@@ -5,6 +5,7 @@ const localStorageName = 'listsData';
     id: 1544234234234,
     inputId: 'input-1544234234234',
     name: 'Молоко',
+    isActive: false,
   }],
   shopping: [{
     id: 1544234234234,
@@ -50,12 +51,17 @@ function createTemplateProduct(productData) {
   newProduct.id = productData.id;
 
   newProduct.innerHTML = `
-    <input type="checkbox" class="check-add" id="${productData.inputId}">
+    <input type="checkbox" class="check-add" id="${productData.inputId}" ${productData.isActive ? 'checked' : ''}>
     <label for="${productData.inputId}">
       ${productData.name} 
       <img src="image/delete2.png" class="remove-button hidden"> 
     </label>
   `;
+
+  newProduct.querySelector(`#${productData.inputId}`).addEventListener('change', (e) => {
+    e.preventDefault();
+    setActiveTemplate(productData);
+  });
 
   newProduct.querySelector('.remove-button').addEventListener('click', (e) => {
     e.preventDefault();
@@ -91,6 +97,7 @@ function addProduct(name) {
 
   if (isTemplateList) {
     newProductData.inputId = 'input-' + id;
+    newProductData.isActive = false;
     setEditModeListItems(isEditMode);
   }
 
@@ -186,6 +193,10 @@ function deleteTemplateListItem(productToDelete) {
 
   createTemplateList();
   setEditModeListItems(isEditMode);
+
+  if (productToDelete.isActive) {
+    createShoppingList();
+  }
 }
 
 function init() {
@@ -260,6 +271,12 @@ function setList(activeList) {
     DOMNodes.templateList.classList.add('hidden');
     DOMNodes.shoppingList.classList.remove('hidden');
   }
+}
+
+function setActiveTemplate(productData) {
+  productData.isActive = !productData.isActive;
+  localStorage.setItem(localStorageName, JSON.stringify(listsData));
+  createShoppingList();
 }
 
 init();

@@ -15,9 +15,11 @@ function createShoppingProduct(productData) {
 
 function createShoppingList() {
     DOMNodes.shoppingList.innerHTML = '';
-    const productListData = listsData.shopping;
-    const listLayout = productListData.map((productData) => createShoppingProduct(productData));
-    DOMNodes.shoppingList.append(...listLayout);
+    const activeTemplateListLayout = listsData.template
+        .filter((productData) => productData.isActive)
+        .map((productData) => createShoppingProduct(productData));
+    const shoppingListLayout = listsData.shopping.map((productData) => createShoppingProduct(productData));
+    DOMNodes.shoppingList.append(...activeTemplateListLayout, ...shoppingListLayout);
 }
 
 function deleteShoppingListItem(productToDelete) {
@@ -29,4 +31,12 @@ function deleteShoppingListItem(productToDelete) {
     localStorage.setItem(localStorageName, JSON.stringify(listsData));
 
     createShoppingList();
+
+    const isTemplate = Boolean(productToDelete.inputId);
+    if (isTemplate) {
+        productToDelete.isActive = false;
+        localStorage.setItem(localStorageName, JSON.stringify(listsData));
+        createShoppingList();
+        createTemplateList();
+    }
 }
