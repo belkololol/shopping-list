@@ -157,23 +157,27 @@ function toggleEditMode(e) {
 }
 
 function setEditModeListItems(isEditMode) {
+  if (isEditMode) {
+    DOMNodes.plusButton.setAttribute('disabled', true);
+    DOMNodes.plusButtonWrapper.classList.remove('show');
+    DOMNodes.whiteSubstrate.classList.add('hidden');
+    DOMNodes.plusButton.classList.remove('close');
+  } else {
+    DOMNodes.plusButton.removeAttribute('disabled');
+  }
+
   DOMNodes.templateList.childNodes.forEach((li) => {
     const checkbox = li.querySelector('.check-add');
     const removeButton = li.querySelector('.remove-button');
 
     if (isEditMode) {
       checkbox.setAttribute('disabled', true);
-      DOMNodes.plusButton.setAttribute('disabled', true);
-      DOMNodes.plusButtonWrapper.classList.remove('show');
-      DOMNodes.whiteSubstrate.classList.add('hidden')
       removeButton.classList.remove('hidden');
-      DOMNodes.plusButton.classList.remove('close');
       setTimeout(() => {
         removeButton.classList.add('animate');
       }, 100)
     } else {
       checkbox.removeAttribute('disabled');
-      DOMNodes.plusButton.removeAttribute('disabled');
       removeButton.classList.add('hidden');
       setTimeout(() => {
         removeButton.classList.remove('animate');
