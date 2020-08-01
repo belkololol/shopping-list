@@ -23,20 +23,20 @@ function createShoppingList() {
 }
 
 function deleteShoppingListItem(productToDelete) {
-    const index = listsData.shopping.findIndex((product) => {
-        if (productToDelete.id === product.id) return true;
-    });
-
-    listsData.shopping.splice(index, 1);
-    localStorage.setItem(localStorageName, JSON.stringify(listsData));
-
-    createShoppingList();
-
     const isTemplate = Boolean(productToDelete.inputId);
     if (isTemplate) {
         productToDelete.isActive = false;
         localStorage.setItem(localStorageName, JSON.stringify(listsData));
         createShoppingList();
         createTemplateList();
+    } else {
+        const index = listsData.shopping.findIndex((product) => {
+            if (productToDelete.id === product.id) return true;
+        });
+    
+        listsData.shopping.splice(index, 1);
+        localStorage.setItem(localStorageName, JSON.stringify(listsData));
+    
+        createShoppingList();
     }
 }
